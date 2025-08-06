@@ -1,10 +1,10 @@
-import styles from "./page.module.css";
+//! TEMPORARY REDIRECT (please remove in before merging to the development branch)
+
+import { redirect } from "next/navigation";
+
+const devModeRedirect = true;
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}></main>
-      <footer className={styles.footer}></footer>
-    </div>
-  );
+  if (devModeRedirect) redirect("/market-overview");
+  return null;
 }
