@@ -31,3 +31,8 @@ stock-market-sim/
 ├── package.json
 └── next.config.js
 ```
+
+## Sources 📚
+
+- [Help with adding gradient background to line chart - ChatGPT](https://chatgpt.com/share/6893cec2-9e0c-8008-a9e5-8a778157a7d1)
+- [Reset.css](https://piccalil.li/blog/a-more-modern-css-reset/?trk=article-ssr-frontend-pulse_x-social-details_comments-action_comment-text)
