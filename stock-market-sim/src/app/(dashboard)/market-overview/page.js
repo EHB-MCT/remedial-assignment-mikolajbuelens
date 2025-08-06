@@ -1,4 +1,5 @@
 import PriceChart from "@/app/components/priceChart";
+import styles from "@/app/styles/layouts/marketOverview.module.css";
 
 export default function MarketOverview() {
   return (

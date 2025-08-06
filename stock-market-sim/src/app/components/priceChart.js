@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import styles from "../styles/components/priceChart.module.css";
 
 ChartJS.register(
   LineElement,
@@ -23,5 +24,9 @@ ChartJS.register(
 );
 
 export default function PriceChart({ chartData, chartOptions }) {
-  return <Line data={chartData} options={chartOptions} />;
+  return (
+    <div className={styles.chartContainer}>
+      <Line data={chartData} options={chartOptions} className={styles.chart} />
+    </div>
+  );
 }
