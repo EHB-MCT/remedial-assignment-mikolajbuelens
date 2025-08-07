@@ -16,3 +16,16 @@
 - Created a initial StockChart component to display stock prices using Chart.js (currently using dummy data)
 - Structured CSS files more logically with component and layout folders and added initial styles with CSS modules to prevent bloated global files
   - Styles that apply to the base layout (all pages) are still kept in `src/app/styles/` such as `globals.css` and the newly added `reset.css` and `variables.css` files
+
+## 07-08-2025
+
+- Added utility function to get recent dates/hours in `src/app/utils/timeUtils.js`, since I plan to use this for multiple components (General stock chart, portfolio chart, etc.)
+- Implemented Jest tests for the utility function in `__tests__/timeUtils.test.js` with the help of the Next.js documentation -> I considered other testing libraries but Jest seems to be the most widely used and well-supported for Next.js projects as well as the industry standard for React applications.
+- Fixed issues found during testing, including handling of invalid time ranges
+- Executed a **git rebase (squash)** to clean up the 4 commits for timeUtils (initial feature, Jest installation, tests, fixes) into a single commit for clarity. I did have some issues, caused by some rookie mistakes (not force pushing, saving changes during the rebase causing conflicts), though nothing that I couldn't resolve with a second rebase.
+
+<p style="margin-left: 2em;">
+  <img src="./screenshots/rebase.png" alt="Git Rebase Window" width="600" border="1" style="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+</p>
+
+<small style="margin-left: 2em;">Using the rebase command opened a Gitlens window (locally installed extension) but I opted to use the text editor instead to get a better feel for the default process.</small>

@@ -18,8 +18,7 @@ stock-market-sim/
 │       ├── services/
 │       ├── styles/
 │       └── utils/
-├── public/
-├── tests/
+├── __tests__/
 ├── docs/
 │   └── progress.md
 ├── README.md
@@ -29,6 +28,7 @@ stock-market-sim/
 ├── CODE_OF_CONDUCT.md
 ├── .gitignore
 ├── package.json
+├── jest.config.js
 └── next.config.js
 ```
 
@@ -36,3 +36,5 @@ stock-market-sim/
 
 - [Help with adding gradient background to line chart - ChatGPT](https://chatgpt.com/share/6893cec2-9e0c-8008-a9e5-8a778157a7d1)
 - [Reset.css](https://piccalil.li/blog/a-more-modern-css-reset/?trk=article-ssr-frontend-pulse_x-social-details_comments-action_comment-text)
+- [Next.js Documentation](https://nextjs.org/docs), more specifically:
+  - [How to use Jest with Next.js](https://nextjs.org/docs/app/guides/testing/jest#creating-your-first-test)
