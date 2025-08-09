@@ -125,7 +125,11 @@ export function getTimeLabels(timeRange, timeUnit) {
   return labels;
 }
 
-// split the timeRange and timeUnit string into an obj in order to use it in the getTimeLabels function
+/**
+ * Split the timeRange and timeUnit string into an obj in order to use it in the getTimeLabels function
+ * @param {string} timeString - The time string to split (e.g., "7D", "3M", "1Y").
+ * @returns {Object} - An object containing the unit and duration.
+ */
 export function splitTimeString(timeString) {
   const match = timeString.match(/^(\d+)([a-zA-Z]+)$/);
   if (!match) return { unit: null, duration: null };

@@ -12,7 +12,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useRef } from "react";
-import { getTimeLabels } from "../utils/timeUtils";
 
 ChartJS.register(
   LineElement,
@@ -27,8 +26,6 @@ ChartJS.register(
 export default function StockChart({ labels, dataPoints }) {
   const chartRef = useRef(null);
   const profit = 10; // Placeholder profit value, will be replaced with actual data
-  const timeLabels = getTimeLabels("days", 7);
-  console.log("Time Labels:", timeLabels);
   const getGradient = (ctx, chartArea) => {
     const gradient = ctx.createLinearGradient(
       0,
