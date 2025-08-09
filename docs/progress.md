@@ -29,3 +29,9 @@
 </p>
 
 <small style="margin-left: 2em;">Using the rebase command opened a Gitlens window (locally installed extension) but I opted to use the text editor instead to get a better feel for the default process.</small>
+
+## 09-08-2025
+
+- Removed the `src/app/styles/variables.css` and moved my CSS variables into globals.css because CSS Modules scope class names locally but do not scope variables or element selectors. This "impure selector" behavior means that variables defined in a module are still globally accessible, so keeping them in globals.css is clearer and avoids confusion. -> [GitHub discussion](https://github.com/vercel/next.js/discussions/17089)
+- Added a "period picker" component to select the time range for the stock chart, allowing users to choose between one or more days, months, and years. Added a button component to apply the selected time range to the chart.
+- Apart from some minor tests and possible improvements, I plan on merging this branch into development (tomorrow), since the basic UI functionality of the chart is now in place and I'd like to shift my focus to the database and API integration.

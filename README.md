@@ -17,6 +17,10 @@ stock-market-sim/
 │       ├── components/
 │       ├── services/
 │       ├── styles/
+│       │   ├── components/
+│       │   ├── layouts/
+│       │   ├── reset.css
+│       │   └── globals.css
 │       └── utils/
 ├── __tests__/
 ├── docs/
@@ -38,3 +42,4 @@ stock-market-sim/
 - [Reset.css](https://piccalil.li/blog/a-more-modern-css-reset/?trk=article-ssr-frontend-pulse_x-social-details_comments-action_comment-text)
 - [Next.js Documentation](https://nextjs.org/docs), more specifically:
   - [How to use Jest with Next.js](https://nextjs.org/docs/app/guides/testing/jest#creating-your-first-test)
+- [Fixing syntax error: Selector ":root" is not pure (pure selectors must contain at least one local class or id)](https://github.com/vercel/next.js/discussions/17089)
