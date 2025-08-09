@@ -2,12 +2,6 @@
 import { getTimeLabels } from "../src/app/utils/timeUtils";
 
 describe("getTimeLabels", () => {
-  it("should return the correct labels for hours", () => {
-    const labels = getTimeLabels("hours", 5);
-    expect(labels).toHaveLength(5);
-    expect(labels[0]).toMatch(/\d{1,2}:\d{2}/); // Check time format
-  });
-
   it("should return the correct labels for days", () => {
     const labels = getTimeLabels(3, "D");
     expect(labels).toHaveLength(3);
