@@ -5,7 +5,7 @@
  * @returns {string[]} - An array of formatted time labels.
  */
 
-export function getTimeLabels(timeUnit, timeRange) {
+export function getTimeLabels(timeRange, timeUnit) {
   const now = new Date();
   const labels = [];
 
