@@ -1,4 +1,12 @@
-@import "./variables.css";
+:root {
+  --font-primary: "Inter", sans-serif;
+  --primary-bg: #f6f6f8;
+  --secondary-bg: #ffffff;
+  --primary-text: #333;
+  --secondary-ui-color: #ececec;
+  --secondary-ui-hover-color: #4164df;
+  --offwhite: #f0f0f0;
+}
 
 html,
 body {
