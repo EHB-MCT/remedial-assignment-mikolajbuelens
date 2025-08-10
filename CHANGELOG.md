@@ -31,3 +31,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 - Restructured CSS files into components/ and layouts/ folders
 - Moved CSS variables from `variables.css` to `globals.css` for clarity and to avoid confusion with CSS Modules' scoping behavior
+
+---
+
+## [0.3.0] - 11-08-2025
+
+### Added
+
+- Supabase as the backend database
+- `supabase.js` file for initializing the Supabase client
+- `services/apiCalls.js` file for handling API calls to the Supabase database
+- API route for companies in `src/app/api/companies/route.js`
+- `.env.example` file for environment variables needed for Supabase

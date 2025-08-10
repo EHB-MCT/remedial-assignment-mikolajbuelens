@@ -14,6 +14,7 @@ stock-market-sim/
 │       ├── (dashboard)/
 │       ├── (stocks)/
 │       ├── api/
+│       │   ├── companies/
 │       ├── components/
 │       ├── services/
 │       ├── styles/
@@ -42,4 +43,7 @@ stock-market-sim/
 - [Reset.css](https://piccalil.li/blog/a-more-modern-css-reset/?trk=article-ssr-frontend-pulse_x-social-details_comments-action_comment-text)
 - [Next.js Documentation](https://nextjs.org/docs), more specifically:
   - [How to use Jest with Next.js](https://nextjs.org/docs/app/guides/testing/jest#creating-your-first-test)
+- [Supabase Documentation](https://supabase.com/docs) more specifically:
+  - [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)
+  - [Supabase connection](https://supabase.com/docs/guides/database/connecting-to-postgres)
 - [Fixing syntax error: Selector ":root" is not pure (pure selectors must contain at least one local class or id)](https://github.com/vercel/next.js/discussions/17089)

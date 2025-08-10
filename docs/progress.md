@@ -35,3 +35,13 @@
 - Removed the `src/app/styles/variables.css` and moved my CSS variables into globals.css because CSS Modules scope class names locally but do not scope variables or element selectors. This "impure selector" behavior means that variables defined in a module are still globally accessible, so keeping them in globals.css is clearer and avoids confusion. -> [GitHub discussion](https://github.com/vercel/next.js/discussions/17089)
 - Added a "period picker" component to select the time range for the stock chart, allowing users to choose between one or more days, months, and years. Added a button component to apply the selected time range to the chart.
 - Apart from some minor tests and possible improvements, I plan on merging this branch into development (tomorrow), since the basic UI functionality of the chart is now in place and I'd like to shift my focus to the database and API integration.
+
+## 10-08-2025
+
+- I chose to use Supabase as the backend database since it already is a part of the Next.js/Vercel ecosystem and provides a user-friendly API and GUI for database management. It also has some decent out-of-the box authentication, which I might use later on depending on the need for user accounts.
+- Added Supabase as the backend database (postgres)
+- Created a `supabase.js` file in `src/app/_lib/` to initialize the Supabase client with environment variables for the URL and anon key
+- Created a `services/apiCalls.js` file to handle API calls to the Supabase database, including functions for CRUD operations. (something I saw used a lot during my internship)
+- Created an API route for companies in `src/app/api/companies/route.js` to fetch company data from the Supabase database as an initial test of the db integration
+- Added a `.env.example` file to provide a template for environment variables needed for Supabase, like the URL and anon key.
+- Lost some time trying to figure out why the initial API route resulted in an empty array, turned out to be [Supabase's/postgres's RLS (Row Level Security)](https://supabase.com/docs/guides/database/postgres/row-level-security) being enabled by default, which requires setting up policies for data access. For now I simply disabled RLS for the companies table since I'm still in early backend development and just required some quick testing.
