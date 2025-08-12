@@ -16,3 +16,19 @@ body {
   background-color: var(--primary-bg);
   color: var(--primary-text);
 }
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
