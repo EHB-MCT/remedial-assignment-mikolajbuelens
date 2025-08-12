@@ -1,15 +1,17 @@
+"use client";
+
 import style from "../styles/components/companyCard.module.css";
 import Image from "next/image";
 
 export default function CompanyCard({ company }) {
   return (
-    <button className={style.card + "flexCenter"}>
+    <button className={style.card}>
       <Image
-        src={company.logo}
+        src={"/img/stocks/" + company.logo}
         alt={company.name}
         className={style.logo}
-        width={64}
-        height={64}
+        width={34}
+        height={34}
       />
       <div className="flexColumn">
         <h2 className={style.companySymbol}>{company.symbol}</h2>
