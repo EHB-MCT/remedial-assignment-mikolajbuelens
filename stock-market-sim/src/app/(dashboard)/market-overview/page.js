@@ -6,6 +6,7 @@ import PriceChart from "@/app/components/priceChart";
 import styles from "@/app/styles/layouts/marketOverview.module.css";
 import PeriodPicker from "@/app/components/PeriodPicker";
 import { getTimeLabels, splitTimeString } from "@/app/utils/timeUtils";
+import CompanyCard from "@/app/components/companyCard";
 
 export default function MarketOverview() {
   const profit = 10; // Example profit value
@@ -16,6 +17,17 @@ export default function MarketOverview() {
   return (
     <div>
       <h1>Market Overview</h1>
+      {/* TODO: replace with db data */}
+      <CompanyCard
+        company={{
+          logo: "/img/stocks/apple-logo.png",
+          symbol: "AAPL",
+          name: "Apple Inc.",
+          price: 150.32,
+          change: "+1.23%",
+          sector: "Technology",
+        }}
+      />
       <PeriodPicker
         onPeriodChange={(period) => {
           const { unit, duration } = splitTimeString(period);
