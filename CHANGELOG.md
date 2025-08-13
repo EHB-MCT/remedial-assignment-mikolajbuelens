@@ -12,8 +12,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Initial `README.md` and progress docs
 - Initial `CHANGELOG.md`, `LICENSE`, `CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md` files
 
----
-
 ## [0.2.0] - 10-08-2025
 
 ### Added
@@ -32,8 +30,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Restructured CSS files into components/ and layouts/ folders
 - Moved CSS variables from `variables.css` to `globals.css` for clarity and to avoid confusion with CSS Modules' scoping behavior
 
----
-
 ## [0.3.0] - 11-08-2025
 
 ### Added
@@ -43,3 +39,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - `services/apiCalls.js` file for handling API calls to the Supabase database
 - API route for companies in `src/app/api/companies/route.js`
 - `.env.example` file for environment variables needed for Supabase
+
+## [1.0.0] - 12-08-2025
+
+### Added
+
+- Initial implementation of company list fetching from Supabase
+- CompanyCard component for displaying individual company information, implemented on the MarketOverview page
+- Basic styling for company cards and market overview layout
+- Add fetchData service function for making client-side API calls to Supabase
+- Add images in public/img/stocks/ for each company logo
+
+### changed
+
+- Replace dummy data from CompanyCard component
+- Update env to switch between development and production URL's

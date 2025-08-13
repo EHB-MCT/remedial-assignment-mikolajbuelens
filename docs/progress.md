@@ -45,3 +45,12 @@
 - Created an API route for companies in `src/app/api/companies/route.js` to fetch company data from the Supabase database as an initial test of the db integration
 - Added a `.env.example` file to provide a template for environment variables needed for Supabase, like the URL and anon key.
 - Lost some time trying to figure out why the initial API route resulted in an empty array, turned out to be [Supabase's/postgres's RLS (Row Level Security)](https://supabase.com/docs/guides/database/postgres/row-level-security) being enabled by default, which requires setting up policies for data access. For now I simply disabled RLS for the companies table since I'm still in early backend development and just required some quick testing.
+
+## 13-08-2025
+
+- I used the Supabase data to populate the CompanyCard components, ran into some CORS issues (since I was trying to send requests from localhost to the Vercel deployment link). I tried to resolve this with headers but ended up just adding the URL in the env to switch between development and production links.
+- Executed some additional rebases in order to clean up commit history which included WIP commits, which were used to check deployment logs and updates related to the cors issues mentioned above.
+- Lost time trying to figure out a "hydration" error, thrown by Next, caused by the CompanyCard component. Ended up being caused by a wrong image path for the company logo's.
+- Manually added extra rows in the Supabase table for companies to ensure there was enough data for testing the UI and simulation later on.
+- Added a MAJOR version bump to the changelog since this is the first release that uses an API call on boot/MarketOverview page, and needs to have the correct env variables set else it will break. I also set the MINOR and PATCH versions back to 0 as per [semantic versioning](https://semver.org/).
+  > "Patch and minor versions MUST be reset to 0 when major version is incremented."
