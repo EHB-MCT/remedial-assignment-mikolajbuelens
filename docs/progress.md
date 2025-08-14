@@ -54,3 +54,15 @@
 - Manually added extra rows in the Supabase table for companies to ensure there was enough data for testing the UI and simulation later on.
 - Added a MAJOR version bump to the changelog since this is the first release that uses an API call on boot/MarketOverview page, and needs to have the correct env variables set else it will break. I also set the MINOR and PATCH versions back to 0 as per [semantic versioning](https://semver.org/).
   > "Patch and minor versions MUST be reset to 0 when major version is incremented."
+
+## 14-08-2025
+
+- Implemented the `updateStockPrices` function in `utils/priceUtils.js` to simulate market price fluctuations based on random generated volatility, using the `Math.random()` function to generate random price changes. The volatility is a variable that could be improved/made more realistic in the future. (i.e. using news events, market trends, sector performance, etc.)
+- Updated the API route for updating stock prices to use the new utility function, this isn't a endpoint that is used directly on the frontend code (no fetch) rather it will be called via a (Vercel) cronjob so that even when the backend is not actively being used, the stock prices can still be updated resulting in a more realistic simulation and chart history.
+- Didn't add a Jest test for the new utility function since it's rather simple and doesn't require extensive testing. Though this could definitly be done in the future if volatility becomes more complex.
+- The cron job will be implemented later when deployment is complete/more stable, for now I used postman to send a request and I can confirm that my Supabase tables are being updated correctly.
+- Added some extra documentation in the readme to clarify the purposes of endpoints and current feature branches
+- I tend to "over-code" before committing, meaning I usually split my changes into smaller compartmentalized ones with different conventional commit keywords, however I did accidentally commit more than intended in a single commit. I fixed this by doing a git reset --mixed HEAD~1 so that these changes would be reset, unstaged, and ready to be split up correctly.
+<p style="margin-left: 2em;">
+  <img src="./screenshots/git-reset.png" alt="Git Reset" width="600" border="1" style="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+</p>

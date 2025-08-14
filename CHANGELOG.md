@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](https://semver.org/).
+All notable changes to this project will be documented in this file (most often when merging a feature branch to develop).
+<br> This document adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.1.0] - 05-08-2025
 
@@ -54,3 +54,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 - Replace dummy data from CompanyCard component
 - Update env to switch between development and production URL's
+
+## [1.1.0] - 14-08-2025
+
+### Added
+
+- Created API route for updating stock prices in `src/app/api/update-price/route.js`
+- Implemented `updateStockPrices` function in `utils/priceUtils.js` to simulate market price fluctuations based on random generated volatility
+
+### Changes
+
+- Allow for bulk updates of stock prices with the updateData service function to Supabase with upsert (`src/app/services/apiCalls.js`)
