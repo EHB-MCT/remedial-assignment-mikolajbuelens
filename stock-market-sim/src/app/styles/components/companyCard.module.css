@@ -9,7 +9,6 @@
   text-align: left;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-right: 20px solid #31f300;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin-bottom: 25px;
@@ -25,6 +24,7 @@
   height: 40px;
   margin-right: 35px;
   align-self: center;
+  object-fit: contain;
 }
 .companyName {
   font-size: 0.6em;
@@ -55,9 +55,19 @@
 }
 
 .selected {
-  border-left: 2px solid #007ef3;
-  border-top: 2px solid #007ef3;
-  border-bottom: 2px solid #007ef3;
+  border: 2px solid #007ef3;
   box-shadow: 0 4px 8px rgba(0, 126, 243, 0.2);
   background-color: #f0f8ff;
+}
+
+.stockCurrency {
+  font-size: 0.9em;
+  color: #999;
+  margin-left: 4px;
+  margin-top: 20px;
+}
+
+.changeIcon {
+  width: 26px;
+  height: 26px;
 }

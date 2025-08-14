@@ -22,16 +22,9 @@ export default function CompanyCard({ company, setSelectedCompany }) {
         <h1 className={style.companyName}>{company.name}</h1>
       </div>
       <div className={`flexCenter flexColumn ${style.priceContainer}`}>
-        <h2 className={style.stockPrice}>{company.price}</h2>
-        <div className={`flexRow flexCenter`}>
-          <Image
-            src="/svg/icons/profitIcon.svg"
-            alt="Change Icon"
-            className={style.changeIcon}
-            width={16}
-            height={16}
-          />
-          <p className={style.stockChange}>{company.change}</p>
+        <div className="flexRow flexCenter">
+          <h2 className={style.stockPrice}>{company.price} </h2>{" "}
+          <small className={style.stockCurrency}>USD</small>
         </div>
       </div>
     </button>

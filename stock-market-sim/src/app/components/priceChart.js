@@ -23,9 +23,8 @@ ChartJS.register(
   Filler
 );
 
-export default function StockChart({ labels, dataPoints }) {
+export default function StockChart({ labels, dataPoints, profit }) {
   const chartRef = useRef(null);
-  const profit = 10; // Placeholder profit value, will be replaced with actual data
   const getGradient = (ctx, chartArea) => {
     const gradient = ctx.createLinearGradient(
       0,
@@ -33,9 +32,15 @@ export default function StockChart({ labels, dataPoints }) {
       0,
       chartArea.bottom
     );
-    gradient.addColorStop(0, "rgba(117, 250, 157, 0.6)"); // top color
-    gradient.addColorStop(1, "rgba(117, 250, 157, 0.05)"); // bottom color
-    return gradient;
+    if (profit > 0) {
+      gradient.addColorStop(0, "rgba(117, 250, 157, 0.6)"); // top color
+      gradient.addColorStop(1, "rgba(117, 250, 157, 0.05)"); // bottom color
+      return gradient;
+    } else {
+      gradient.addColorStop(0, "rgba(248, 102, 109, 0.66)"); // top color
+      gradient.addColorStop(1, "rgba(250, 117, 157, 0)"); // bottom color
+      return gradient;
+    }
   };
 
   const chartData = {
@@ -46,7 +51,7 @@ export default function StockChart({ labels, dataPoints }) {
         data: dataPoints,
         fill: true,
         borderColor:
-          profit > 0 ? "rgba(117, 250, 157, 0.5)" : "rgba(250, 117, 157)",
+          profit > 0 ? "rgba(117, 250, 157, 0.5)" : "rgba(242,139,130)",
         backgroundColor: (context) => {
           const chart = context.chart;
           const { ctx, chartArea } = chart;
