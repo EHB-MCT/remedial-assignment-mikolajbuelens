@@ -32,11 +32,10 @@ export async function postData(tableName, values) {
   return data;
 }
 
-export async function updateData(tableName, values, condition) {
+export async function updateData(tableName, values) {
   const { data, error } = await supabase
     .from(tableName)
-    .update(values)
-    .match(condition);
+    .upsert(values, { onConflict: "id" });
   if (error)
     throw new Error(`Error updating data in ${tableName}: ${error.message}`);
   return data;
