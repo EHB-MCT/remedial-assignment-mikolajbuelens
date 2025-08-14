@@ -7,6 +7,7 @@ import { getTimeLabels, splitTimeString } from "@/app/utils/timeUtils";
 import CompanyCard from "@/app/components/companyCard";
 import { fetchData } from "@/app/services/apiCalls";
 import usePriceHistory from "@/app/hooks/usePriceHistory";
+import Image from "next/image";
 
 export default function MarketOverview() {
   const profit = 10; // Example profit value
@@ -26,6 +27,7 @@ export default function MarketOverview() {
 
   console.log("Fetched Companies:", companies);
   console.log("Selected Company:", selectedCompany);
+  console.warn("selections", selectedPeriod, selectedCompany);
   const { chartPriceData, chartLabels } = usePriceHistory(
     selectedCompany,
     selectedPeriod
@@ -62,6 +64,12 @@ export default function MarketOverview() {
 
   // const timeLabels = getTimeLabels(7, "D"); // Get labels for the last 7 days
   // console.log("Time Labels:", timeLabels);
+
+  const profitLoss = (
+    chartPriceData[chartPriceData.length - 1] - chartPriceData[0]
+  ).toFixed(2);
+  const percentageChange = ((profitLoss / chartPriceData[0]) * 100).toFixed(2);
+
   return (
     <div>
       <h1>Market Overview</h1>
@@ -114,11 +122,33 @@ export default function MarketOverview() {
         }}
         selectedPeriod={selectedPeriod}
       />
-      <h3>{selectedCompany.name}</h3>
+      <div className="flexRow">
+        <h3>
+          {selectedCompany.name}{" "}
+          <span style={{ color: profitLoss > 0 ? "green" : "red" }}>
+            {profitLoss} ({percentageChange}%)
+          </span>
+        </h3>
+        <Image
+          style={{ alignSelf: "bottom", marginTop: "15px" }}
+          src={
+            profitLoss > 0
+              ? "/svg/icons/profitIcon.svg"
+              : "/svg/icons/lossIcon.svg"
+          }
+          alt="Change Icon"
+          width={26}
+          height={26}
+        />
+      </div>
 
       {/* <div className={styles.profit}> */}
       {console.log("Chart Price Data:", chartPriceData)}
-      <PriceChart labels={chartLabels} dataPoints={chartPriceData} />
+      <PriceChart
+        labels={chartLabels}
+        dataPoints={chartPriceData}
+        profit={profitLoss}
+      />
     </div>
   );
 }
