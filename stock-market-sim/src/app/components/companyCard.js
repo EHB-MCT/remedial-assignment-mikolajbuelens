@@ -3,9 +3,12 @@
 import style from "../styles/components/companyCard.module.css";
 import Image from "next/image";
 
-export default function CompanyCard({ company }) {
+export default function CompanyCard({ company, setSelectedCompany }) {
   return (
-    <button className={style.card}>
+    <button
+      className={`${style.card} ${company.selected ? style.selected : ""}`}
+      onClick={() => setSelectedCompany(company)}
+    >
       <Image
         src={"/img/stocks/" + company.logo}
         alt={company.name}
