@@ -131,8 +131,49 @@ export function getTimeLabels(timeRange, timeUnit) {
  * @returns {Object} - An object containing the unit and duration.
  */
 export function splitTimeString(timeString) {
-  const match = timeString.match(/^(\d+)([a-zA-Z]+)$/);
+  console.warn("splitTimeString called with:", timeString);
+  const match = (timeString || "").trim().match(/^(\d+)([a-zA-Z]+)$/);
   if (!match) return { unit: null, duration: null };
   const [, duration, unit] = match;
+  console.warn("splitTimeString result:", { unit, duration });
   return { unit, duration: Number(duration) };
+}
+
+/**
+ * Returns a Date object representing the earliest timestamp to query
+ * for a given period like "1D", "1W", "1M", "1Y".
+ */
+export function getStartTimeForPeriod(duration, unit) {
+  const now = new Date();
+  const start = new Date(now);
+
+  switch (unit) {
+    case "D":
+      if (duration === 1) {
+        // Start of today (midnight)
+        start.setHours(0, 0, 0, 0);
+      } else {
+        start.setDate(now.getDate() - duration + 1);
+        start.setHours(0, 0, 0, 0);
+      }
+      break;
+    case "W":
+      start.setDate(now.getDate() - duration * 7 + 1);
+      start.setHours(0, 0, 0, 0);
+      break;
+    case "M":
+      start.setMonth(now.getMonth() - duration + 1);
+      start.setDate(1);
+      start.setHours(0, 0, 0, 0);
+      break;
+    case "Y":
+      start.setFullYear(now.getFullYear() - duration + 1);
+      start.setMonth(0, 1);
+      start.setHours(0, 0, 0, 0);
+      break;
+    default:
+      throw new Error("Invalid time unit: must be 'D', 'W', 'M', or 'Y'");
+  }
+
+  return start;
 }

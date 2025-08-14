@@ -6,11 +6,15 @@ import PeriodPicker from "@/app/components/PeriodPicker";
 import { getTimeLabels, splitTimeString } from "@/app/utils/timeUtils";
 import CompanyCard from "@/app/components/companyCard";
 import { fetchData } from "@/app/services/apiCalls";
+import usePriceHistory from "@/app/hooks/usePriceHistory";
 
 export default function MarketOverview() {
   const profit = 10; // Example profit value
   const [timeLabels, setTimeLabels] = useState(getTimeLabels(7, "D")); // Default to last 7 days
   const [companies, setCompanies] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState("NVIDIA Corporation");
+  // const [chartPriceData, setChartPriceData] = useState([]);
+  const [selectedPeriod, setSelectedPeriod] = useState("1D");
 
   useEffect(() => {
     async function fetchCompanies() {
@@ -21,6 +25,40 @@ export default function MarketOverview() {
   }, []);
 
   console.log("Fetched Companies:", companies);
+  console.log("Selected Company:", selectedCompany);
+  const { chartPriceData, chartLabels } = usePriceHistory(
+    selectedCompany,
+    selectedPeriod
+  );
+
+  // useEffect(() => {
+  //   async function fetchPriceHistory() {
+  //     if (!selectedCompany) return;
+
+  //     const data = await fetchData(
+  //       `price-history?companyId=${selectedCompany.id}&period=1D`
+  //     );
+
+  //     // Sort data by timestamp just in case
+  //     const sortedData = data.sort(
+  //       (a, b) => new Date(a.created_at) - new Date(b.created_at)
+  //     );
+
+  //     // Extract prices and corresponding labels
+  //     const prices = sortedData.map((obj) => obj.price);
+  //     const labels = sortedData.map((obj) =>
+  //       new Date(obj.created_at).toLocaleTimeString([], {
+  //         hour: "2-digit",
+  //         minute: "2-digit",
+  //       })
+  //     );
+
+  //     setChartPriceData(prices);
+  //     setTimeLabels(labels); // <-- now your labels match timestamps exactly
+  //   }
+
+  //   fetchPriceHistory();
+  // }, [selectedCompany]);
 
   // const timeLabels = getTimeLabels(7, "D"); // Get labels for the last 7 days
   // console.log("Time Labels:", timeLabels);
@@ -33,13 +71,15 @@ export default function MarketOverview() {
             <CompanyCard
               key={company.stock_symbol}
               company={{
+                id: company.id,
                 logo: company.stock_symbol.toLowerCase() + ".png",
                 symbol: company.stock_symbol,
                 name: company.name,
-                price: "123",
-                change: "+1.23%",
-                // sector: "",
+                price: company.latest_price,
+                change: "+1.23%", //TODO: Calculate actual change
+                selected: selectedCompany.name === company.name,
               }}
+              setSelectedCompany={setSelectedCompany}
             />
           ))
         ) : (
@@ -69,14 +109,16 @@ export default function MarketOverview() {
             duration
           );
           console.log("Time Labels:", timeLabels);
-          setTimeLabels(getTimeLabels(duration, unit));
+          // setTimeLabels(getTimeLabels(duration, unit));
+          setSelectedPeriod(period);
         }}
+        selectedPeriod={selectedPeriod}
       />
+      <h3>{selectedCompany.name}</h3>
+
       {/* <div className={styles.profit}> */}
-      <PriceChart
-        labels={timeLabels}
-        dataPoints={[100, 105, 102, 110, 108, 115, 120]}
-      />
+      {console.log("Chart Price Data:", chartPriceData)}
+      <PriceChart labels={chartLabels} dataPoints={chartPriceData} />
     </div>
   );
 }

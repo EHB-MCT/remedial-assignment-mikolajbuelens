@@ -1,4 +1,4 @@
-import { supabase } from "../_lib/supabase";
+import { supabase } from "../_lib/supabase.js";
 
 export async function fetchData(endpoint) {
   const response = await fetch(
@@ -18,8 +18,18 @@ export async function fetchData(endpoint) {
   return response.json();
 }
 
-export async function getData(tableName) {
-  const { data, error } = await supabase.from(tableName).select("*");
+export async function getData(tableName, filters = {}) {
+  let query = supabase.from(tableName).select("*");
+
+  if (filters.companyId) {
+    query = query.eq("company_id", filters.companyId);
+  }
+  if (filters.startTime) {
+    query = query.gte("created_at", filters.startTime.toISOString());
+  }
+
+  const { data, error } = await query;
+
   if (error)
     throw new Error(`Error fetching data from ${tableName}: ${error.message}`);
   return data;
