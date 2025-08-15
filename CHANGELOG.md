@@ -87,3 +87,9 @@ All notable changes to this project will be documented in this file (most often 
 - Updated `usePriceHistory` hook to use the new `fetchPriceHistory` function
 - Updated buttons/cards so they have a clear selection style
 - (Slightly) improved price change generation for a more realistic simulation/chart
+
+## [1.3.1] - 15-08-2025
+
+### Changes
+
+- Fixed `PrimaryButton` import path for deployment
