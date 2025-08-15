@@ -15,6 +15,7 @@ stock-market-sim/
 │       ├── (stocks)/
 │       ├── api/
 │       │   ├── companies/
+│       │   ├── price-history/
 │       │   └── update-price/
 │       ├── components/
 │       ├── services/
@@ -23,6 +24,8 @@ stock-market-sim/
 │       │   ├── layouts/
 │       │   ├── reset.css
 │       │   └── globals.css
+│       ├── hooks/
+│       ├── seeders/
 │       └── utils/
 ├── __tests__/
 ├── docs/
@@ -38,12 +41,26 @@ stock-market-sim/
 └── next.config.js
 ```
 
+## Branches 🪵
+
+#### High-Level Overview of current branches
+
+- main
+- develop
+- feat/setup-nextjs -> initial setup for Next.js
+- feat/chart-ui -> implemented chart UI components
+- feat/db-connection -> established Supabase database connection
+- feat/company-list -> created company list view with a company card component
+- feat/price-simulation -> added price simulation logic (creating/updating simulated prices)
+- feat/price-display -> Displayed prices from DB in chart and cards
+
 ## API Endpoints 🔌
 
-| Method | Endpoint           | Description                                             |
-| ------ | ------------------ | ------------------------------------------------------- |
-| GET    | /api/companies     | Fetch all companies.                                    |
-| POST   | /api/update-prices | Insert/update stock prices for all available companies. |
+| Method | Endpoint           | Description                                                                 |
+| ------ | ------------------ | --------------------------------------------------------------------------- |
+| GET    | /api/companies     | Fetch all companies.                                                        |
+| POST   | /api/update-price  | Insert/update stock prices for all available companies.                     |
+| GET    | /api/price-history | Fetch the latest stock prices for all companies. Price + timestamp history. |
 
 ## Sources 📚
 

@@ -66,3 +66,12 @@
 <p style="margin-left: 2em;">
   <img src="./screenshots/git-reset.png" alt="Git Reset" width="600" border="1" style="border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 </p>
+
+## 15-08-2025
+
+- Created a seeder (`src/app/seeders/priceHistorySeeder`) for populating initial price history data going back a year, tried to add a different amount of data points over specific periods so that the chart would not be overloaded with data. (i.e. more data points for recent days, and fewer for past months, year)
+- Installed dotenv to be able to run seeder since it doesn't automatically load environment variables like Next.js does
+- Tried to add new data with a Vercel cron job but free accounts are limited to 1 per day so I dropped the idea and will manually update prices/with a local interval.
+- Added a 5 minute interval to fetch of price history in order to get latest prices.
+- Added a hook `usePriceHistory` for fetching and managing price history data in components. Used a hook instead of a service function since it allows for stateful logic and easier integration with my components.
+- Added various styling (button selection, red/green profit/loss indicators)

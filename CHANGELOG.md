@@ -65,3 +65,23 @@ All notable changes to this project will be documented in this file (most often 
 ### Changes
 
 - Allow for bulk updates of stock prices with the updateData service function to Supabase with upsert (`src/app/services/apiCalls.js`)
+
+## [1.2.0] - 15-08-2025
+
+### Added
+
+- Created API route for fetching price history in `src/app/api/price-history/route.js`
+- Implemented `fetchPriceHistory` function in `services/apiCalls.js` to retrieve price history data from Supabase
+- New hook `usePriceHistory` for fetching and managing price history data in components
+- Created a seeder (`src/app/seeders/priceHistorySeeder`) for populating initial price history data going back a year
+- Installed dotenv to be able to run seeder since it doesn't automatically load environment variables like Next.js does
+- Calculate profit/loss for a selected period and apply styling to the UI accordingly (losses in red, profit in green)
+- added a 5 minute interval to fetch of price history in order to get latest prices
+
+### Changes
+
+- Updated `getData` function to use filters for the price history API route
+- Updated `fetchData's` API URL so it works in deployment (removing the URL env variables which was not needed since Vercel handles this automatically)
+- Updated `usePriceHistory` hook to use the new `fetchPriceHistory` function
+- Updated buttons/cards so they have a clear selection style
+- (Slightly) improved price change generation for a more realistic simulation/chart
