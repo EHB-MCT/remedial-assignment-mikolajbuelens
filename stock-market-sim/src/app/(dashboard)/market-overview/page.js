@@ -84,7 +84,6 @@ export default function MarketOverview() {
                 symbol: company.stock_symbol,
                 name: company.name,
                 price: company.latest_price,
-                change: "+1.23%", //TODO: Calculate actual change
                 selected: selectedCompany.name === company.name,
               }}
               setSelectedCompany={setSelectedCompany}
@@ -123,23 +122,30 @@ export default function MarketOverview() {
         selectedPeriod={selectedPeriod}
       />
       <div className="flexRow">
-        <h3>
-          {selectedCompany.name}{" "}
-          <span style={{ color: profitLoss > 0 ? "green" : "red" }}>
-            {profitLoss} ({percentageChange}%)
-          </span>
-        </h3>
-        <Image
-          style={{ alignSelf: "bottom", marginTop: "15px" }}
-          src={
-            profitLoss > 0
-              ? "/svg/icons/profitIcon.svg"
-              : "/svg/icons/lossIcon.svg"
-          }
-          alt="Change Icon"
-          width={26}
-          height={26}
-        />
+        {!isNaN(profitLoss) ? (
+          <>
+            <h3>
+              {selectedCompany.name}{" "}
+              <span style={{ color: profitLoss > 0 ? "green" : "red" }}>
+                {profitLoss} ({percentageChange}%)
+              </span>
+            </h3>
+
+            <Image
+              style={{ alignSelf: "bottom", marginTop: "15px" }}
+              src={
+                profitLoss > 0
+                  ? "/svg/icons/profitIcon.svg"
+                  : "/svg/icons/lossIcon.svg"
+              }
+              alt="Change Icon"
+              width={26}
+              height={26}
+            />
+          </>
+        ) : (
+          <h3>No Company Selected</h3>
+        )}
       </div>
 
       {/* <div className={styles.profit}> */}
