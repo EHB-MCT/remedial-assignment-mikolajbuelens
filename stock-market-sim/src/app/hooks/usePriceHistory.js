@@ -8,6 +8,8 @@ export default function usePriceHistory(selectedCompany, period) {
   useEffect(() => {
     if (!selectedCompany?.id) return;
 
+    let intervalId;
+
     async function fetchPriceHistory() {
       try {
         const data = await fetchData(
@@ -62,6 +64,11 @@ export default function usePriceHistory(selectedCompany, period) {
     }
 
     fetchPriceHistory();
+
+    // refresh every 5 minutes
+    intervalId = setInterval(fetchPriceHistory, 5 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
   }, [selectedCompany, period]);
 
   return { chartPriceData, chartLabels };
