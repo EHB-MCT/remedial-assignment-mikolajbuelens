@@ -69,9 +69,18 @@
 
 ## 15-08-2025
 
+#### feat/price-display
+
 - Created a seeder (`src/app/seeders/priceHistorySeeder`) for populating initial price history data going back a year, tried to add a different amount of data points over specific periods so that the chart would not be overloaded with data. (i.e. more data points for recent days, and fewer for past months, year)
 - Installed dotenv to be able to run seeder since it doesn't automatically load environment variables like Next.js does
 - Tried to add new data with a Vercel cron job but free accounts are limited to 1 per day so I dropped the idea and will manually update prices/with a local interval.
 - Added a 5 minute interval to fetch of price history in order to get latest prices.
 - Added a hook `usePriceHistory` for fetching and managing price history data in components. Used a hook instead of a service function since it allows for stateful logic and easier integration with my components.
 - Added various styling (button selection, red/green profit/loss indicators)
+
+#### feat/buy-sell
+
+- Wanted to wrap up to project for now with a buy/sell functionality for stocks in the MarketOverview page.
+- I implemented a user's stored stock info/portfolio management using localStorage. Mostly because I already had persistence logic around the stock data itself and it felt like overkill to implement the whole register/login in the end.
+- Created a `tradeUtils.js` file in `src/app/utils/` to handle portfolio management, the trading logic itself was placed in the main `MarketOverview` component, mostly because it's an essential part of the page and making a hook for it felt unnecessary.
+- I'll probably revisit the project for minor improvements, for now, since it's in a stable and working state I will merge the development branch into main for the first time/initial release.

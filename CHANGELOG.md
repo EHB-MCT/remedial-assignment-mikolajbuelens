@@ -77,6 +77,8 @@ All notable changes to this project will be documented in this file (most often 
 - Installed dotenv to be able to run seeder since it doesn't automatically load environment variables like Next.js does
 - Calculate profit/loss for a selected period and apply styling to the UI accordingly (losses in red, profit in green)
 - added a 5 minute interval to fetch of price history in order to get latest prices
+- Added ability to buy/sell stocks from the MarketOverview page
+- Implemented portfolio storage with localStorage
 
 ### Changes
 
