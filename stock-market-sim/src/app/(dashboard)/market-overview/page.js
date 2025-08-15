@@ -8,7 +8,7 @@ import CompanyCard from "@/app/components/companyCard";
 import { fetchData } from "@/app/services/apiCalls";
 import usePriceHistory from "@/app/hooks/usePriceHistory";
 import { getPortfolio } from "@/app/utils/tradeUtils";
-import PrimaryButton from "@/app/components/primaryButton";
+import PrimaryButton from "@/app/components/PrimaryButton";
 import Image from "next/image";
 
 export default function MarketOverview() {
