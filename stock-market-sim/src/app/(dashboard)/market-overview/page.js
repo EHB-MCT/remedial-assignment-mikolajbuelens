@@ -7,6 +7,8 @@ import { getTimeLabels, splitTimeString } from "@/app/utils/timeUtils";
 import CompanyCard from "@/app/components/companyCard";
 import { fetchData } from "@/app/services/apiCalls";
 import usePriceHistory from "@/app/hooks/usePriceHistory";
+import { getPortfolio } from "@/app/utils/tradeUtils";
+import PrimaryButton from "@/app/components/primaryButton";
 import Image from "next/image";
 
 export default function MarketOverview() {
@@ -15,6 +17,7 @@ export default function MarketOverview() {
   const [companies, setCompanies] = useState([]);
   const [selectedCompany, setSelectedCompany] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("1D");
+  const [portfolio, setPortfolio] = useState(getPortfolio());
 
   useEffect(() => {
     async function fetchCompanies() {
@@ -36,6 +39,37 @@ export default function MarketOverview() {
     chartPriceData[chartPriceData.length - 1] - chartPriceData[0]
   ).toFixed(2);
   const percentageChange = ((profitLoss / chartPriceData[0]) * 100).toFixed(2);
+
+  function handleTrade(type, amount) {
+    const portfolio = getPortfolio();
+    const selectedCompanyPrice = selectedCompany.price;
+
+    if (type === "buy") {
+      console.log("companyPrice", selectedCompany);
+      const cost = selectedCompanyPrice * amount;
+      if (portfolio.balance >= cost) {
+        portfolio.balance -= cost;
+        portfolio.stocks[selectedCompany.id] =
+          (portfolio.stocks[selectedCompany.id] || 0) + amount;
+      } else {
+        console.log("balance and cost", portfolio.balance, cost);
+        alert("Not enough balance!");
+        return;
+      }
+    } else if (type === "sell") {
+      const owned = portfolio.stocks[selectedCompany.id] || 0;
+      if (owned >= amount) {
+        portfolio.balance += selectedCompanyPrice * amount;
+        portfolio.stocks[selectedCompany.id] -= amount;
+      } else {
+        alert("Not enough stocks!");
+        return;
+      }
+    }
+
+    localStorage.setItem("portfolio", JSON.stringify(portfolio));
+    setPortfolio(portfolio);
+  }
 
   return (
     <div>
@@ -110,6 +144,35 @@ export default function MarketOverview() {
         dataPoints={chartPriceData}
         profit={profitLoss}
       />
+
+      {/* buySell */}
+      <div className="flexCenter flexColumn">
+        <p>Balance: ${portfolio.balance.toFixed(2)}</p>
+        {!!selectedCompany.name ? (
+          <div>
+            <p>
+              Owned stock of {selectedCompany.name}:{" "}
+              {portfolio.stocks[selectedCompany.id] || 0}
+            </p>
+            <div className="flexRow flexCenter">
+              <PrimaryButton
+                color="#29E69F"
+                onClick={() => handleTrade("buy", 1)}
+              >
+                Buy
+              </PrimaryButton>
+              <PrimaryButton
+                color="#FB4D59"
+                onClick={() => handleTrade("sell", 1)}
+              >
+                Sell
+              </PrimaryButton>
+            </div>
+          </div>
+        ) : (
+          <p>Please select a company to start trading.</p>
+        )}
+      </div>
     </div>
   );
 }
