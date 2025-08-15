@@ -1,0 +1,13 @@
+file used to setup a Vercel cron job (change to .json to use)
+=> unused due to Vercel's limit on free accounts (1 cron job a day)
+instead a manual price update will be done (by the user)
+
+
+{
+  "crons": [
+    {
+      "path": "/api/update-prices",
+      "schedule": "*/5 * * * *"
+    }
+  ]
+}
