@@ -13,8 +13,7 @@ export default function MarketOverview() {
   const profit = 10; // Example profit value
   const [timeLabels, setTimeLabels] = useState(getTimeLabels(7, "D")); // Default to last 7 days
   const [companies, setCompanies] = useState([]);
-  const [selectedCompany, setSelectedCompany] = useState("NVIDIA Corporation");
-  // const [chartPriceData, setChartPriceData] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("1D");
 
   useEffect(() => {
@@ -32,38 +31,6 @@ export default function MarketOverview() {
     selectedCompany,
     selectedPeriod
   );
-
-  // useEffect(() => {
-  //   async function fetchPriceHistory() {
-  //     if (!selectedCompany) return;
-
-  //     const data = await fetchData(
-  //       `price-history?companyId=${selectedCompany.id}&period=1D`
-  //     );
-
-  //     // Sort data by timestamp just in case
-  //     const sortedData = data.sort(
-  //       (a, b) => new Date(a.created_at) - new Date(b.created_at)
-  //     );
-
-  //     // Extract prices and corresponding labels
-  //     const prices = sortedData.map((obj) => obj.price);
-  //     const labels = sortedData.map((obj) =>
-  //       new Date(obj.created_at).toLocaleTimeString([], {
-  //         hour: "2-digit",
-  //         minute: "2-digit",
-  //       })
-  //     );
-
-  //     setChartPriceData(prices);
-  //     setTimeLabels(labels); // <-- now your labels match timestamps exactly
-  //   }
-
-  //   fetchPriceHistory();
-  // }, [selectedCompany]);
-
-  // const timeLabels = getTimeLabels(7, "D"); // Get labels for the last 7 days
-  // console.log("Time Labels:", timeLabels);
 
   const profitLoss = (
     chartPriceData[chartPriceData.length - 1] - chartPriceData[0]
@@ -94,16 +61,6 @@ export default function MarketOverview() {
         )}
       </div>
 
-      {/* <CompanyCard
-        company={{
-          logo: "/img/stocks/apple-logo.png",
-          symbol: "AAPL",
-          name: "Apple Inc.",
-          price: 150.32,
-          change: "+1.23%",
-          sector: "Technology",
-        }}
-      /> */}
       <PeriodPicker
         onPeriodChange={(period) => {
           const { unit, duration } = splitTimeString(period);
@@ -116,7 +73,6 @@ export default function MarketOverview() {
             duration
           );
           console.log("Time Labels:", timeLabels);
-          // setTimeLabels(getTimeLabels(duration, unit));
           setSelectedPeriod(period);
         }}
         selectedPeriod={selectedPeriod}
@@ -148,8 +104,7 @@ export default function MarketOverview() {
         )}
       </div>
 
-      {/* <div className={styles.profit}> */}
-      {console.log("Chart Price Data:", chartPriceData)}
+      {/* {console.log("Chart Price Data:", chartPriceData)} */}
       <PriceChart
         labels={chartLabels}
         dataPoints={chartPriceData}
