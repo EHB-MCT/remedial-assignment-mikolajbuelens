@@ -1,12 +1,15 @@
 import { supabase } from "../_lib/supabase.js";
 
 export async function fetchData(endpoint) {
-  const response = await fetch(`api/${endpoint}`, {
-    headers: {
-      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`,
+    {
+      headers: {
+        apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!response.ok) {
     throw new Error(
       `Error fetching data from ${endpoint}: ${response.statusText}`
