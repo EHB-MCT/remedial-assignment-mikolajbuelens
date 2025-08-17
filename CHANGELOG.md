@@ -95,7 +95,7 @@ All notable changes to this project will be documented in this file (most often 
 - Fixed `PrimaryButton` import path for deployment
 - Fixed portfolio functions to use localStorage directly
 
-## [1.4.1] - 15-08-2025
+## [1.4.1] - 17-08-2025
 
 ### Added
 
