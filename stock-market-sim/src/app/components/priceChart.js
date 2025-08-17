@@ -23,7 +23,7 @@ ChartJS.register(
   Filler
 );
 
-export default function StockChart({ labels, dataPoints, profit }) {
+export default function PriceChart({ labels, dataPoints, profit }) {
   const chartRef = useRef(null);
   const getGradient = (ctx, chartArea) => {
     const gradient = ctx.createLinearGradient(
