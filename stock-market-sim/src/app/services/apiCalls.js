@@ -1,9 +1,10 @@
 import { supabase } from "../_lib/supabase.js";
 
-export async function fetchData(endpoint) {
+export async function fetchData(endpoint, method = "GET") {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`,
     {
+      method: method,
       headers: {
         apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         "Content-Type": "application/json",

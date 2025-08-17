@@ -61,13 +61,15 @@ export default function usePriceHistory(selectedCompany, period) {
         setChartLabels([]);
         setChartPriceData([]);
       }
+      // generate new prices which will then be fetched (could be improved: post request -> return new data as response)
+      fetchData("update-price", "POST");
+      // console.log("Price history fetched");
     }
 
     fetchPriceHistory();
 
-    // refresh every 5 minutes
-    intervalId = setInterval(fetchPriceHistory, 5 * 60 * 1000);
-
+    // refresh every 10 seconds
+    intervalId = setInterval(fetchPriceHistory, 10 * 1000);
     return () => clearInterval(intervalId);
   }, [selectedCompany, period]);
 
