@@ -58,7 +58,7 @@ The project is a stock market simulation made with Next.js and Supabase. Users c
 
 ## Screenshots & demo 👀
 
-### Deployment: https://remedial-assignment-mikolajb-git-fe9925-mikolajbuelens-projects.vercel.app/market-overview <br>
+### Deployment: https://remedial-assignment-mikolajbuelens.vercel.app/market-overview <br>
 
 <br> <br>
 
